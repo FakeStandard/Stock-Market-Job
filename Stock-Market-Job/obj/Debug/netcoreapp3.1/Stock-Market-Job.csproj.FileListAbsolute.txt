@@ -1,0 +1,12 @@
+D:\2.Project\SideProject\Stock-Market-Job\Stock-Market-Job\bin\Debug\netcoreapp3.1\Stock-Market-Job.exe
+D:\2.Project\SideProject\Stock-Market-Job\Stock-Market-Job\bin\Debug\netcoreapp3.1\Stock-Market-Job.deps.json
+D:\2.Project\SideProject\Stock-Market-Job\Stock-Market-Job\bin\Debug\netcoreapp3.1\Stock-Market-Job.runtimeconfig.json
+D:\2.Project\SideProject\Stock-Market-Job\Stock-Market-Job\bin\Debug\netcoreapp3.1\Stock-Market-Job.runtimeconfig.dev.json
+D:\2.Project\SideProject\Stock-Market-Job\Stock-Market-Job\bin\Debug\netcoreapp3.1\Stock-Market-Job.dll
+D:\2.Project\SideProject\Stock-Market-Job\Stock-Market-Job\bin\Debug\netcoreapp3.1\Stock-Market-Job.pdb
+D:\2.Project\SideProject\Stock-Market-Job\Stock-Market-Job\obj\Debug\netcoreapp3.1\Stock-Market-Job.AssemblyInfoInputs.cache
+D:\2.Project\SideProject\Stock-Market-Job\Stock-Market-Job\obj\Debug\netcoreapp3.1\Stock-Market-Job.AssemblyInfo.cs
+D:\2.Project\SideProject\Stock-Market-Job\Stock-Market-Job\obj\Debug\netcoreapp3.1\Stock-Market-Job.csproj.CoreCompileInputs.cache
+D:\2.Project\SideProject\Stock-Market-Job\Stock-Market-Job\obj\Debug\netcoreapp3.1\Stock-Market-Job.dll
+D:\2.Project\SideProject\Stock-Market-Job\Stock-Market-Job\obj\Debug\netcoreapp3.1\Stock-Market-Job.pdb
+D:\2.Project\SideProject\Stock-Market-Job\Stock-Market-Job\obj\Debug\netcoreapp3.1\Stock-Market-Job.genruntimeconfig.cache
