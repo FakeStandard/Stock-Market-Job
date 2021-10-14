@@ -1,8 +1,10 @@
-﻿using System;
+﻿using SMJ.DataAccess.Provider;
+using SMJ.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Daily_Quotes_Job
+namespace SMJ.Service
 {
     public class DailyQuotesService
     {
@@ -12,12 +14,12 @@ namespace Daily_Quotes_Job
             dailyQuotesProvider = new DailyQuotesProvider();
         }
 
-        public List<DailyQuotesModel> GetAllItems()
+        public List<DailyQuotes> GetAllItems()
         {
             return dailyQuotesProvider.GetAllItems();
         }
 
-        public void Insert(List<DailyQuotesModel> list)
+        public void Insert(List<DailyQuotes> list)
         {
             dailyQuotesProvider.Insert(list);
         }

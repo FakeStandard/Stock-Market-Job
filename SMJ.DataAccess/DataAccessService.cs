@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Daily_Quotes_Job
+namespace SMJ.DataAccess
 {
     public class DataAccessService
     {

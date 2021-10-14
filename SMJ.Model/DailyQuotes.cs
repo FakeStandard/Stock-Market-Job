@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace Daily_Quotes_Job
+namespace SMJ.Model
 {
     /// <summary>
     /// 每日收盤行情
     /// </summary>
     [Table("DailyQuotes")]
-    public class DailyQuotesModel
+    public class DailyQuotes
     {
         [Key]
         public int ID { get; set; }

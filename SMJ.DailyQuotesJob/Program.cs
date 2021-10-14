@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SMJ.Model;
+using SMJ.Service;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -6,7 +8,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Daily_Quotes_Job
+namespace SMJ.DailyQuotesJob
 {
     class Program
     {
@@ -14,38 +16,17 @@ namespace Daily_Quotes_Job
         static async Task Main(string[] args)
         {
             // 爬取和新增資料
-            //await CrawlerStockByDate(new DateTime(2021, 10, 11));
-            //return;
+            await CrawlerStockByDate(DateTime.Now);
 
-            var date = new DateTime(2021, 9, 28);
-            var today = DateTime.Now.Date;
-            //var today = new DateTime(2021, 8, 31);
-
-            while (DateTime.Compare(date.Date, today) <= 0)
-            {
-                if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
-                {
-                    Console.WriteLine($"{date.Date} is a holiday.");
-                    date = date.AddDays(1);
-                    continue;
-                }
-                else
-                {
-                    // 爬取和新增資料
-                    await CrawlerStockByDate(date);
-
-                    date = date.AddDays(1);
-                    Console.WriteLine($"next wait...");
-                    Thread.Sleep(10000);
-                }
-            }
+            // 爬取過往資料
+            //var start = new DateTime(2020, 1, 1);
+            //var end = new DateTime(2020, 12, 13);
+            //CrawlerStockByOldDate(start, end);
 
             Console.WriteLine("Done.");
 
             // 取得每日資料
             //GetData();
-
-            //Console.BackgroundColor = ConsoleColor.Yellow;
 
             Console.ReadLine();
         }
@@ -63,7 +44,7 @@ namespace Daily_Quotes_Job
                 string json = await client.GetStringAsync($"https://www.twse.com.tw/exchangeReport/MI_INDEX?response=json&date={date.ToString("yyyyMMdd")}&type=ALLBUT0999&_=1634182224496");
 
                 var res = JsonSerializer.Deserialize<DataInfo>(json);
-                List<DailyQuotesModel> list = new List<DailyQuotesModel>();
+                List<DailyQuotes> list = new List<DailyQuotes>();
 
                 if (res.stat.Equals("很抱歉，沒有符合條件的資料!"))
                 {
@@ -75,7 +56,7 @@ namespace Daily_Quotes_Job
                 {
                     res.data9.ForEach(data =>
                     {
-                        list.Add(new DailyQuotesModel()
+                        list.Add(new DailyQuotes()
                         {
                             StockCode = data[0],
                             StockName = data[1],
@@ -99,6 +80,7 @@ namespace Daily_Quotes_Job
                     });
 
                     services.Insert(list);
+                    Console.WriteLine($"{date.Date} Complete.");
                 }
                 else
                 {
@@ -107,8 +89,6 @@ namespace Daily_Quotes_Job
                     Console.ForegroundColor = ConsoleColor.White;
                 }
             }
-
-            Console.WriteLine($"{date.Date} Complete.");
         }
 
         /// <summary>
@@ -144,6 +124,33 @@ namespace Daily_Quotes_Job
 
                 Console.WriteLine(sb.ToString());
                 sb.Clear();
+            }
+        }
+
+        /// <summary>
+        /// 爬取過往日期區間資料
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        public static async void CrawlerStockByOldDate(DateTime start, DateTime end)
+        {
+            while (DateTime.Compare(start.Date, end.Date) <= 0)
+            {
+                if (start.DayOfWeek == DayOfWeek.Saturday || start.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    Console.WriteLine($"{start.Date} is a holiday.");
+                    start = start.AddDays(1);
+                    continue;
+                }
+                else
+                {
+                    // 爬取和新增資料
+                    await CrawlerStockByDate(start);
+
+                    start = start.AddDays(1);
+                    Console.WriteLine($"next wait...");
+                    Thread.Sleep(10000);
+                }
             }
         }
     }

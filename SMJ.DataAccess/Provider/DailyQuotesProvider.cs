@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using SMJ.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Transactions;
 
-namespace Daily_Quotes_Job
+namespace SMJ.DataAccess.Provider
 {
     public class DailyQuotesProvider
     {
@@ -14,9 +15,9 @@ namespace Daily_Quotes_Job
         /// 查詢所有資料
         /// </summary>
         /// <returns></returns>
-        public List<DailyQuotesModel> GetAllItems()
+        public List<DailyQuotes> GetAllItems()
         {
-            List<DailyQuotesModel> items = null;
+            List<DailyQuotes> items = null;
 
             string sqlCommand = @"
                     SELECT [ID]
@@ -41,7 +42,7 @@ namespace Daily_Quotes_Job
 
             using (var conn = new SqlConnection(DataAccessService.connectionStr))
             {
-                items = conn.Query<DailyQuotesModel>(sqlCommand).ToList();
+                items = conn.Query<DailyQuotes>(sqlCommand).ToList();
             }
 
             return items;
@@ -51,7 +52,7 @@ namespace Daily_Quotes_Job
         /// 新增資料
         /// </summary>
         /// <param name="list"></param>
-        public void Insert(List<DailyQuotesModel> list)
+        public void Insert(List<DailyQuotes> list)
         {
             try
             {
