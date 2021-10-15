@@ -12,7 +12,7 @@ namespace SMJ.DataAccess.Provider
     public class DailyQuotesProvider
     {
         /// <summary>
-        /// 查詢所有資料
+        /// 查詢當年度所有資料
         /// </summary>
         /// <returns></returns>
         public List<DailyQuotes> GetAllItems()
@@ -39,6 +39,44 @@ namespace SMJ.DataAccess.Provider
                           ,[LastBestAskVolume]
                           ,[PER]
                       FROM [DailyQuotes]";
+
+            using (var conn = new SqlConnection(DataAccessService.connectionStr))
+            {
+                items = conn.Query<DailyQuotes>(sqlCommand).ToList();
+            }
+
+            return items;
+        }
+
+        /// <summary>
+        /// 查詢特定日期資料
+        /// </summary>
+        /// <returns></returns>
+        public List<DailyQuotes> GetDateItem(DateTime date)
+        {
+            List<DailyQuotes> items = null;
+
+            string sqlCommand = $@"
+                    SELECT [ID]
+                          ,[StockCode]
+                          ,[StockName]
+                          ,[TradeDate]
+                          ,[TradeVolumn]
+                          ,[TradeValue]
+                          ,[TradePrice]
+                          ,[OpeningPrice]
+                          ,[HighestPrice]
+                          ,[LowestPrice]
+                          ,[ClosingPrice]
+                          ,[Dir]
+                          ,[Change]
+                          ,[LastBestBidPrice]
+                          ,[LastBestBidVolume]
+                          ,[LastBestAskPrice]
+                          ,[LastBestAskVolume]
+                          ,[PER]
+                      FROM [DailyQuotes]
+                      WHERE [TradeDate] = '{date.Date.ToString("yyyy-MM-dd")}'";
 
             using (var conn = new SqlConnection(DataAccessService.connectionStr))
             {

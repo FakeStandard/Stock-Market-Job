@@ -19,6 +19,11 @@ namespace SMJ.Service
             return dailyQuotesProvider.GetAllItems();
         }
 
+        public List<DailyQuotes> GetDateItem(DateTime date)
+        {
+            return dailyQuotesProvider.GetDateItem(date);
+        }
+
         public void Insert(List<DailyQuotes> list)
         {
             dailyQuotesProvider.Insert(list);

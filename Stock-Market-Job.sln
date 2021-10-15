@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Job", "Job", "{56A66F5F-793
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMJ.DailyQuotesJob", "SMJ.DailyQuotesJob\SMJ.DailyQuotesJob.csproj", "{397F32E3-271E-4545-9AB1-59708764B17D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMJ.StockMarketJob", "SMJ.StockMarketJob\SMJ.StockMarketJob.csproj", "{BBC80C9B-A581-4EAA-8B62-919A13CD3370}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{397F32E3-271E-4545-9AB1-59708764B17D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{397F32E3-271E-4545-9AB1-59708764B17D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{397F32E3-271E-4545-9AB1-59708764B17D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBC80C9B-A581-4EAA-8B62-919A13CD3370}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBC80C9B-A581-4EAA-8B62-919A13CD3370}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBC80C9B-A581-4EAA-8B62-919A13CD3370}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBC80C9B-A581-4EAA-8B62-919A13CD3370}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{FFB9A3FE-81B3-4301-BBC7-57BE974A9035} = {8D979642-915B-46BE-BAC4-674757BF4FAF}
 		{BCB3CA6F-CE01-4FA8-9177-4F7C67602E18} = {96D91A89-9F71-41F1-B5FC-245021CFD8DB}
 		{397F32E3-271E-4545-9AB1-59708764B17D} = {56A66F5F-7939-4EC2-A982-CCF969347CFF}
+		{BBC80C9B-A581-4EAA-8B62-919A13CD3370} = {56A66F5F-7939-4EC2-A982-CCF969347CFF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {10331531-16A5-4C38-ABB0-F32522EAA68E}
