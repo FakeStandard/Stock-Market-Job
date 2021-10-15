@@ -1,5 +1,6 @@
 ﻿using SMJ.Model;
 using SMJ.Service;
+using SMJ.Log;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -28,7 +29,7 @@ namespace SMJ.DailyQuotesJob
             // 取得每日資料
             //GetData();
 
-            Console.ReadLine();
+            //Console.ReadLine();
         }
 
         /// <summary>
@@ -40,15 +41,13 @@ namespace SMJ.DailyQuotesJob
         {
             using (var client = new HttpClient())
             {
-                //string json = await client.GetStringAsync($"https://www.twse.com.tw/exchangeReport/MI_INDEX?response=json&date=20211013&type=ALLBUT0999&_=1634182224496");
                 string json = await client.GetStringAsync($"https://www.twse.com.tw/exchangeReport/MI_INDEX?response=json&date={date.ToString("yyyyMMdd")}&type=ALLBUT0999&_=1634182224496");
-
                 var res = JsonSerializer.Deserialize<DataInfo>(json);
-                List<DailyQuotes> list = new List<DailyQuotes>();
+                var list = new List<DailyQuotes>();
 
                 if (res.stat.Equals("很抱歉，沒有符合條件的資料!"))
                 {
-                    Console.WriteLine($"{date.Date} is a holiday.");
+                    LoggerService.WriteWarn($"【{date.Date.ToString("yyyy/MM/dd")}】這天沒有開市");
                     return;
                 }
 
@@ -79,14 +78,9 @@ namespace SMJ.DailyQuotesJob
                         });
                     });
 
+                    LoggerService.WriteInfo($"【{date.Date}】 Start.");
                     services.Insert(list);
-                    Console.WriteLine($"{date.Date} Complete.");
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"{date.Date} failed to obtain data.");
-                    Console.ForegroundColor = ConsoleColor.White;
+                    LoggerService.WriteInfo($"【{date.Date}】 Complete.");
                 }
             }
         }
@@ -139,6 +133,7 @@ namespace SMJ.DailyQuotesJob
                 if (start.DayOfWeek == DayOfWeek.Saturday || start.DayOfWeek == DayOfWeek.Sunday)
                 {
                     Console.WriteLine($"{start.Date} is a holiday.");
+                    LoggerService.WriteWarn($"【{start.Date.ToString("yyyy/MM/dd")}】這天沒有開市");
                     start = start.AddDays(1);
                     continue;
                 }

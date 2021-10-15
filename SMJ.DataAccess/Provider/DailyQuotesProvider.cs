@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using SMJ.Model;
+using SMJ.Log;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -92,6 +93,9 @@ namespace SMJ.DataAccess.Provider
         /// <param name="list"></param>
         public void Insert(List<DailyQuotes> list)
         {
+            string code = "";
+            string name = "";
+
             try
             {
                 string sqlCommand = @"
@@ -136,13 +140,13 @@ namespace SMJ.DataAccess.Provider
                 {
                     using (var scope = new TransactionScope())
                     {
-                        //int i = 0; 
-
                         foreach (var l in list)
                         {
-                            //conn.ExecuteScalarAsync(sqlCommand, l);
+                            code = l.StockCode;
+                            name = l.StockName;
                             conn.Execute(sqlCommand, l);
-                            //Console.WriteLine($"{++i}. Complete {l.StockName}");
+
+                            LoggerService.WriteInfo($"Add {code} {name}");
                         }
 
                         scope.Complete();
@@ -152,7 +156,7 @@ namespace SMJ.DataAccess.Provider
             catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(ex.Message);
+                LoggerService.WriteError($"[{code} {name}]新增時發生意外錯誤,交易關閉", ex);
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }

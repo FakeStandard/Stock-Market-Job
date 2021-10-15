@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SMJ.Log\SMJ.Log.csproj" />
     <ProjectReference Include="..\SMJ.Model\SMJ.Model.csproj" />
   </ItemGroup>
 

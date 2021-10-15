@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NLog.Config" Version="4.7.11" />
+    <PackageReference Include="NLog.Schema" Version="4.7.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SMJ.Log\SMJ.Log.csproj" />
     <ProjectReference Include="..\SMJ.Model\SMJ.Model.csproj" />
     <ProjectReference Include="..\SMJ.Service\SMJ.Service.csproj" />
   </ItemGroup>

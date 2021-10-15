@@ -22,12 +22,20 @@ namespace SMJ.Log
         }
 
         /// <summary>
+        /// 寫入警示訊息
+        /// </summary>
+        public static void WriteWarn(string warn)
+        {
+            CurrentLogger.Warn($"{warn}.");
+        }
+
+        /// <summary>
         /// 寫入錯誤訊息
         /// </summary>
         /// <param name="error"></param>
-        public static void WriteError(string error)
+        public static void WriteError(string error, Exception ex)
         {
-            CurrentLogger.Error($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}\t{error}");
+            CurrentLogger.Error($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}\t[{error}]\n{ex}");
         }
     }
 }
